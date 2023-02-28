@@ -1,6 +1,6 @@
 <template>
   <NavBarComp/>
-  <div class="container-fluid min-vh-100">
+  <div class="background">
    <router-view/>
   </div>
   <FooterComp/>
@@ -19,6 +19,10 @@
  
 
 <style>
+.background{
+  background-color:  #80573b;
+  background-attachment: fixed;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

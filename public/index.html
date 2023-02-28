@@ -7,6 +7,8 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <script src="https://kit.fontawesome.com/cce18f0ce0.js"
     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
@@ -15,5 +17,9 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>
