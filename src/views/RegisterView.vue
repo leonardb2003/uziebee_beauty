@@ -1,4 +1,8 @@
 <template>
+  <div data-aos="fade-down"
+     data-aos-easing="linear"
+     data-aos-duration="1500">
+
     <div class="container">
     <div class="form-box register">
       <h2>Registration</h2>
@@ -28,6 +32,7 @@
 
       </form>
     </div>
+  </div>
   </div>
 </template>
 
@@ -104,13 +109,14 @@
 .enter{
   width: 100%;
   height: 50px;
-  background: rgb(237, 145, 160);
+  background: #ed91a0;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
   font-weight: bold;
   font-size: 20px;
   transition: 0.4s;
+  border: #ed91a0;
 }
 .remember-forgot label input{
   accent-color: #272020;

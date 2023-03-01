@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg">
   <div class="slogan">
     <img src="https://i.postimg.cc/cJk73b3h/2.jpg">
   </div>
@@ -13,6 +13,9 @@
         <li class="nav-item">
           <i class="fa fa-home" aria-hidden="true"></i><router-link to ="/"> Home   </router-link>       
         </li>
+        <li class="nav-item ">
+          <i class="fa fa-inbox" aria-hidden="true"></i><router-link to ="/about us"> About Us   </router-link>
+        </li>
         <li class="nav-item">
           <i class="fa fa-shopping-cart" aria-hidden="true"></i><router-link to ="/products"> Products   </router-link>     
         </li>
@@ -25,6 +28,7 @@
         <li class="nav-item ">
           <i class="fa fa-user-plus" aria-hidden="true"></i><router-link to ="/register"> Register   </router-link>
         </li>
+
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -36,6 +40,9 @@
 </template>
 
 <style scoped>
+.navbar{
+  background-color: lightblue ;
+}
 .slogan img{
   width: 50px;
 } 
@@ -44,9 +51,11 @@
 }
 
 .navbar-brand span{
-  color: #80573b;
-
-
+  color: deeppink;
+  font-size: 2rem;
+}
+.fa {
+  color: #090909;
 }
 
 </style>
