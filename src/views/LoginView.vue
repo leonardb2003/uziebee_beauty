@@ -1,7 +1,8 @@
 <template>
-  <div data-aos="fade-down"
-     data-aos-easing="linear"
-     data-aos-duration="1500">
+  <div data-aos="fade-left"
+     data-aos-anchor="#example-anchor"
+     data-aos-offset="600"
+     data-aos-duration="600">
 
   <div class="container">
     <div class="form-box login">
