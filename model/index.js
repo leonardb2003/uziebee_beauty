@@ -188,7 +188,7 @@ class Product {
         const strQry = 
         `
         DELETE FROM Products
-        WHERE id = ?;
+        WHERE prodID = ?;
         `;
         db.query(strQry,[req.params.id], (err)=> {
             if(err) res.status(400).json({err: "The record was not found."});
