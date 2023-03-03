@@ -9,42 +9,42 @@ class User{
         const {emailAdd, userPass} = req.body;
         const strQry = 
         `
-        SELECT SELECT userID ,firstName ,lastName ,gender,cellphoneNumber ,emailAdd ,userPass,userRole , userProfile,joinDate 
+        SELECT SELECT userID ,firstName ,lastName ,gender,cellphoneNumber ,emailAdd ,userPass,userRole , userProfile
         FROM Users
         WHERE emailAdd = ${emailAdd};
         `;
-        db.query(strQry,async(err,data)=>{
+        db.query(strQry, async(err,data)=>{
             if(err) throw err;
             if ((!data) || (data == null)){
                 res.status(401).json({
-                    err: "You provide a wrong email address" });
+                    err: "You have provided a wrong email address" });
                  }else {
                 await compare(userPass, data[0].userPass,
                     (cErr, cResult)=>{
                         if(cErr) throw cErr;
                         //Create Token
-                        const jwToken =
+                        const ubToken =
                         createToken({
                             emailAdd,
                             userPass
-                        })
+                        });
                         //Saving Token on Cookie
-                        request.cookie('LegitUser', jwToken,{
+                        request.cookie('LegitUser', ubToken,{
                             maxAge: 3600000,
                             httpOnly: true
-                        })
+                        });
                         if(cResult){
                             request.status(200).json({
-                                msg:'You are logged in',jwToken,result: data[0]
-                            })
+                                msg:'You are logged in',ubToken,result: data[0]
+                            });
                         }else {
                             request.status(401).json({
-                                err:"You have entered an invalid password or did not register."
-                            })
+                                err:"Invalid Password,register or try again later."
+                            });
                         }
-                    })
+                    });
                  }
-        })
+        });
     }
     fetchUsers(req, res) {
         const strQry =
@@ -86,8 +86,8 @@ class User{
                 res.status(401).json({err});
             }else {
                 // Create a token
-                const jwToken = createToken(user);
-                res.cookie("LegitUser", jwToken, {
+                const ubToken = createToken(user);
+                res.cookie("LegitUser", ubToken, {
                     maxAge: 3600000,
                     httpOnly: true
                 });
@@ -97,8 +97,7 @@ class User{
     }
     updateUser(req, res) {
         let data = req.body;
-        if(data.userPass !== null || 
-            data.userPass !== undefined)
+        if(data.userPass !== null || data.userPass !== undefined)
             data.userPass = hashSync(data.userPass, 15);
         const strQry = 
         `
@@ -111,7 +110,7 @@ class User{
             (err)=>{
             if(err) throw err;
             res.status(200).json( {msg: 
-                "A row was affected"} );
+                "Your Data has been updated."} );
         })    
     }
     deleteUser(req, res) {
@@ -125,9 +124,27 @@ class User{
             (err)=>{
             if(err) throw err;
             res.status(200).json( {msg: 
-                "A record was removed from a database"} );
-        })    
+                "A record was deleted."} );
+        });  
     }
+forgetPassword(req, res){
+    let data = req.body;
+    if(data.userPass != null || data.userPass != undefined)
+    data.userPass =hashSync(data.userPass,15);
+
+    const strQry =
+    `
+    update Users
+    set ?
+    where cellphoneNumber = ? and emailAdd = ?;
+    `;
+    db.query(strQry,[req.params.id], 
+        (err)=>{
+        if(err) throw err;
+        res.status(200).json( {msg: 
+            "Password has been updated."} );
+})
+}
 }
 //PRODUCTS
 class Product {
