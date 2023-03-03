@@ -28,6 +28,9 @@
         <li class="nav-item ">
           <i class="fa fa-user-plus" aria-hidden="true"></i><router-link to ="/register"> Register   </router-link>
         </li>
+        <li class="nav-item ">
+          <i class="fa fa-phone" aria-hidden="true"></i><router-link to ="/contact"> Contact Us  </router-link>
+        </li>
 
       </ul>
       <form class="d-flex" role="search">

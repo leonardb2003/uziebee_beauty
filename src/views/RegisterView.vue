@@ -1,12 +1,12 @@
 <template>
-  <div data-aos="fade-down"
+  <div data-aos="fade-left"
      data-aos-easing="linear"
      data-aos-duration="1500">
 
     <div class="container">
     <div class="form-box register">
       <h2>Registration</h2>
-      <form action="https://formspree.io/f/xlevpezg" method="post" role="form" class="formspree-form">
+ 
         <div class="insert-box">
           <i class="fa fa-user" aria-hidden="true"></i>
           <input type="text"  name="name" required>
@@ -30,7 +30,7 @@
           <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
         </div>
 
-      </form>
+      
     </div>
   </div>
   </div>
@@ -134,3 +134,33 @@
 }
 
 </style>
+<script>
+import {computed} from '@vue/runtime-core';
+import { useStore } from 'vuex';
+export default {
+  setup() {
+    const payload = {
+      firstName: '',
+      lastName: '',
+      gender: '',
+      cellphoneNumber: '',
+      emailAdd: '',
+      pass: '',
+      userProfile: '',
+      joinDate: '',
+    };
+    const store = useStore();
+    const signUp = ()=> {
+      store.dispatch("register", payload);
+      store.dispatch("FetchUsers");
+    }
+    const userMsg = 
+    computed( ()=>store.state.message)
+    return {
+      payload,
+      userMsg,
+      signUp
+    }
+  }
+}
+</script> 
