@@ -9,7 +9,7 @@ class User{
         const {emailAdd, userPass} = req.body;
         const strQry = 
         `
-        SELECT SELECT userID ,firstName ,lastName ,gender,cellphoneNumber ,emailAdd ,userPass,userRole , userProfile
+        SELECT userID ,firstName ,lastName ,gender,cellphoneNumber ,emailAdd ,userPass,userRole , userProfile
         FROM Users
         WHERE emailAdd = ${emailAdd};
         `;
@@ -29,16 +29,16 @@ class User{
                             userPass
                         });
                         //Saving Token on Cookie
-                        request.cookie('LegitUser', ubToken,{
+                        res.cookie('LegitUser', ubToken,{
                             maxAge: 3600000,
                             httpOnly: true
                         });
                         if(cResult){
-                            request.status(200).json({
+                            res.status(200).json({
                                 msg:'You are logged in',ubToken,result: data[0]
                             });
                         }else {
-                            request.status(401).json({
+                            res.status(401).json({
                                 err:"Invalid Password,register or try again later."
                             });
                         }
@@ -60,9 +60,9 @@ class User{
     fetchUser(req, res){
         const strQry =
         `
-        SELECT userID ,FirstName ,lastName ,gender ,emailAdd ,UserRole , userProfile,joinDate
+        SELECT userID, FirstName, lastName, gender, emailAdd, UserRole, userProfile, joinDate
         FROM Users
-        WHERE userID = ?;
+        WHERE userID;
         `
         db.query(strQry[req.params.id],(err,data)=>{
             if(err) throw err;
